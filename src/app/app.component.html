@@ -1,0 +1,21 @@
+<div class="app-container">
+
+  <!-- Barre de connexion / déconnexion -->
+  <div class="top-bar" *ngIf="isLogged">
+    <p>Connecté en tant que : <strong>{{ getUserEmail() }}</strong></p>
+    <button (click)="logout()" class="btn-logout">Déconnexion</button>
+  </div>
+
+  <!-- Composant Auth seulement si pas connecté -->
+  <app-auth *ngIf="!isLogged" (loginEvent)="setLogged($event)"></app-auth>
+
+  <!-- Liste des tâches et formulaire -->
+  <div *ngIf="isLogged" class="tasks-wrapper">
+    <!-- Formulaire -->
+    <app-task-form [taskToEdit]="taskToEdit"></app-task-form>
+
+    <!-- Liste des tâches avec événement d'édition -->
+    <app-task-list (editTaskEvent)="onEditTask($event)"></app-task-list>
+  </div>
+
+</div>

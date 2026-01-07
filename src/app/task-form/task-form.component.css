@@ -1,0 +1,69 @@
+/* Centre le formulaire sur la page */
+.task-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
+}
+
+.task-form-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.responsive-form {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #04AA6D;
+  background-color: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type=text],
+input[type=number],
+input[type=date],
+textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #039f5b;
+}
+
+/* Responsive pour petits écrans */
+@media screen and (max-width: 600px) {
+  .responsive-form {
+    padding: 15px;
+  }
+}

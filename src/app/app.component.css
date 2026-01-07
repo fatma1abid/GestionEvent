@@ -1,0 +1,22 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.btn-logout {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+}

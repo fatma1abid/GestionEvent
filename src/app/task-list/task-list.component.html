@@ -1,0 +1,23 @@
+<div *ngIf="(tasks$ | async)?.length; else noTasks">
+  <ul>
+    <li *ngFor="let task of tasks$ | async" [class.completed]="task.completed">
+      <div class="task-info">
+        <strong>{{ task.title }}</strong> - {{ task.description }} -
+        Priorité: {{ task.priority }} -
+        Échéance: {{ task.dueDate }}
+      </div>
+
+      <div class="task-actions">
+        <button (click)="toggle(task)">
+          {{ task.completed ? 'Annuler' : 'Terminer' }}
+        </button>
+        <button (click)="edit(task)">Modifier</button> <!-- Bouton Edit -->
+        <button (click)="delete(task)">Supprimer</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noTasks>
+  <p>Aucune tâche pour le moment.</p>
+</ng-template>
