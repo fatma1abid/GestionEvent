@@ -1,0 +1,54 @@
+<div class="register-page">
+  <div class="register-card">
+    <h2>Créer un compte</h2>
+    <p>Remplissez vos informations pour créer votre compte</p>
+
+    <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form">
+
+      <!-- Prénom -->
+      <div class="form-group">
+        <input type="text" [(ngModel)]="firstName" name="firstName" placeholder="Prénom" required />
+        <div class="error-message" *ngIf="firstNameError">{{ firstNameError }}</div>
+      </div>
+
+      <!-- Nom -->
+      <div class="form-group">
+        <input type="text" [(ngModel)]="lastName" name="lastName" placeholder="Nom" required />
+        <div class="error-message" *ngIf="lastNameError">{{ lastNameError }}</div>
+      </div>
+
+      <!-- Numéro de téléphone -->
+      <div class="form-group">
+        <input type="text" [(ngModel)]="phone" name="phone" placeholder="Numéro de téléphone" required />
+        <div class="error-message" *ngIf="phoneError">{{ phoneError }}</div>
+      </div>
+
+      <!-- URL image profil (optionnel) -->
+      <div class="form-group">
+        <input type="text" [(ngModel)]="imageUrl" name="imageUrl" placeholder="URL image profil (optionnel)" />
+        <div class="error-message" *ngIf="imageUrlError">{{ imageUrlError }}</div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
+        <div class="error-message" *ngIf="emailError">{{ emailError }}</div>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="form-group">
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required />
+        <div class="error-message" *ngIf="passwordError">{{ passwordError }}</div>
+      </div>
+
+      <button type="submit" class="btn-register">Créer le compte</button>
+
+      <p class="login-link">
+        Déjà un compte ? <a routerLink="/auth">Se connecter</a>
+      </p>
+
+      <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+
+    </form>
+  </div>
+</div>

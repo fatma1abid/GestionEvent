@@ -1,44 +1,127 @@
-<div class="task-form-container">
-  <h2>{{ editingTask ? 'Modifier la tâche' : 'Ajouter une tâche' }}</h2>
+<!-- HEADER -->
+<div class="tasks-header">
+  <h2>{{ editingTask ? 'Modifier un événement' : 'Ajouter un événement' }}</h2>
+  <button routerLink="/tasks" class="btn-add">← Liste des événements</button>
+</div>
 
-  <!-- [formGroup] : lie le formulaire à notre FormGroup dans le component TS -->
+<!-- FORMULAIRE -->
+<div class="task-form-container">
+
   <form [formGroup]="form" (ngSubmit)="submit()" class="responsive-form">
 
-    <label for="title">Titre</label>
+    <!-- TITRE -->
+    <label for="title">Titre *</label>
     <input
       type="text"
       id="title"
       formControlName="title"
-      placeholder="Titre de la tâche"
+      placeholder="Titre de l'événement"
     />
+    <div class="error" *ngIf="isFieldInvalid('title')">
+      Le titre doit contenir entre 3 et 100 caractères.
+    </div>
 
-    <label for="description">Description</label>
+    <!-- DESCRIPTION -->
+    <label for="description">Description *</label>
     <textarea
       id="description"
       formControlName="description"
-      placeholder="Description de la tâche"
+      placeholder="Description de l'événement"
     ></textarea>
+    <div class="error" *ngIf="isFieldInvalid('description')">
+      La description doit contenir entre 5 et 500 caractères.
+    </div>
 
-    <label for="priority">Priorité (1-5)</label>
+    <!-- PRIORITÉ / PARTICIPANTS -->
+    <label for="priority">Nombre de participants *</label>
     <input
       type="number"
       id="priority"
       formControlName="priority"
       min="1"
-      max="5"
     />
+    <div class="error" *ngIf="isFieldInvalid('priority')">
+      Le nombre doit être supérieur ou égal à 1.
+    </div>
 
-    <!-- Champ Date d'échéance -->
-    <label for="dueDate">Date d'échéance</label>
+    <!-- DATE -->
+    <label for="dueDate">Date *</label>
     <input
       type="date"
       id="dueDate"
       formControlName="dueDate"
     />
+    <div class="error" *ngIf="isFieldInvalid('dueDate')">
+      La date est obligatoire.
+    </div>
 
-    <!-- Bouton Submit -->
-    <button type="submit">
-      {{ editingTask ? 'Modifier' : 'Ajouter' }} Tâche
+    <!-- LIEU -->
+    <label for="location">Lieu</label>
+    <input
+      type="text"
+      id="location"
+      formControlName="location"
+      placeholder="Salle / Lieu"
+    />
+    <div class="error" *ngIf="isFieldInvalid('location')">
+      Maximum 100 caractères.
+    </div>
+
+    <!-- IMAGE -->
+    <label for="image">Image</label>
+    <input
+      type="file"
+      id="image"
+      accept="image/png, image/jpeg"
+      (change)="onFileSelected($event)"
+    />
+
+    <img
+      *ngIf="form.value.imageUrl"
+      [src]="form.value.imageUrl"
+      alt="Aperçu image"
+      class="preview-image"
+    />
+
+    <!-- CATÉGORIE -->
+    <label for="category">Catégorie</label>
+    <input
+      type="text"
+      id="category"
+      formControlName="category"
+      placeholder="Ex : Travail, Loisir..."
+    />
+    <div class="error" *ngIf="isFieldInvalid('category')">
+      Maximum 50 caractères.
+    </div>
+
+    <!-- MAX PARTICIPANTS -->
+    <label for="maxParticipants">Max participants</label>
+    <input
+      type="number"
+      id="maxParticipants"
+      formControlName="maxParticipants"
+      min="0"
+    />
+    <div class="error" *ngIf="isFieldInvalid('maxParticipants')">
+      Doit être un nombre positif.
+    </div>
+
+    <!-- NOTES -->
+    <label for="notes">Notes</label>
+    <textarea
+      id="notes"
+      formControlName="notes"
+      placeholder="Notes supplémentaires"
+    ></textarea>
+    <div class="error" *ngIf="isFieldInvalid('notes')">
+      Maximum 300 caractères.
+    </div>
+
+    <!-- SUBMIT -->
+    <button type="submit" class="btn-submit">
+      {{ editingTask ? 'Modifier' : 'Ajouter' }} l’événement
     </button>
+
   </form>
 </div>

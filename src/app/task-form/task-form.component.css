@@ -1,69 +1,109 @@
-/* Centre le formulaire sur la page */
 .task-form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
-  font-family: Arial, sans-serif;
+  margin: 50px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .task-form-container h2 {
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 25px;
+  color: #007BFF;
+  font-size: 28px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .responsive-form {
   max-width: 600px;
   width: 100%;
-  border-radius: 8px;
-  border: 2px solid #04AA6D;
-  background-color: #f2f2f2;
-  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  padding: 30px;
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  transition: all 0.3s ease;
+}
+
+.responsive-form:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 label {
+  font-weight: 600;
   margin-bottom: 5px;
-  font-weight: bold;
+  color: #333;
 }
 
 input[type=text],
 input[type=number],
 input[type=date],
 textarea {
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 12px 15px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
   width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+  outline: none;
 }
 
 textarea {
-  height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
 button {
   width: 100%;
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px;
+  padding: 14px;
   font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: #fff;
+  background: linear-gradient(90deg, #007BFF, #0056b3);
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #039f5b;
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Responsive pour petits écrans */
 @media screen and (max-width: 600px) {
   .responsive-form {
-    padding: 15px;
+    padding: 20px;
   }
+
+  .task-form-container h2 {
+    font-size: 24px;
+  }
+}
+
+.page-container {
+  display: flex;
+  gap: 30px;
+  margin: 30px;
+}
+
+.sidebar {
+  width: 250px;
+  background: #f7f9fc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.main-content {
+  flex: 1; /* prend tout l'espace restant pour le tableau */
 }

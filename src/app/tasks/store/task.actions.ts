@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Task } from '../../models/task.model';
-
+//définit toutes les actions
 export const addTask = createAction(
   '[Task] Add',
   props<{ task: Task }>()

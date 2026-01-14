@@ -1,14 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
+//gère la mise à jour de l’état selon les actions
 // `createReducer` : permet de créer un reducer NgRx facilement
-// `on` : lie une action à une fonction qui modifie l'état
 
 import { initialState } from './task.state';
-// importe l'état initial défini dans task.state.ts
 
 import * as TaskActions from './task.actions';
-// importe toutes les actions définies dans task.actions.ts
 
-// Définition du reducer pour les tâches
 export const taskReducer = createReducer(
   initialState, // état initial avant toute action
 

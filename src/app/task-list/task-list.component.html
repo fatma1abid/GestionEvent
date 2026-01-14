@@ -1,23 +1,60 @@
-<div *ngIf="(tasks$ | async)?.length; else noTasks">
-  <ul>
-    <li *ngFor="let task of tasks$ | async" [class.completed]="task.completed">
-      <div class="task-info">
-        <strong>{{ task.title }}</strong> - {{ task.description }} -
-        Priorité: {{ task.priority }} -
-        Échéance: {{ task.dueDate }}
+<div class="tasks-header">
+  <h2>Mes événements</h2>
+  <div class="tasks-filters">
+    <input
+      type="text"
+      placeholder="Rechercher par titre..."
+      [(ngModel)]="searchTerm"
+      (input)="applyFilters()"
+      class="search-input"
+    />
+
+    <label>
+      Le :
+      <input type="date" [(ngModel)]="startDate" (change)="applyFilters()" />
+    </label>
+  </div>
+
+  <button routerLink="/add-task" class="btn-add">Ajouter un événement</button>
+</div>
+
+<div class="cards-container" *ngIf="filteredTasks.length > 0; else noTasks">
+  <div class="task-card" *ngFor="let task of filteredTasks" [class.completed]="task.completed">
+
+    <!-- Badge statut -->
+    <div class="status-badge" [ngClass]="task.completed ? 'completed-badge' : 'ongoing-badge'">
+      {{ task.completed ? 'Terminé' : 'En cours' }}
+    </div>
+
+    <!-- Image -->
+    <div class="card-image">
+      <img *ngIf="task.imageUrl" [src]="task.imageUrl" alt="image" />
+      <div *ngIf="!task.imageUrl" class="no-image">Pas d'image</div>
+    </div>
+
+    <div class="card-content">
+      <h3>{{ task.title }}</h3>
+      <p class="description">{{ task.description }}</p>
+
+      <div class="details">
+        <p><strong>Lieu:</strong> {{ task.location || '-' }}</p>
+        <p><strong>Catégorie:</strong> {{ task.category || '-' }}</p>
+        <p><strong>Participants:</strong> {{ task.priority }} / {{ task.maxParticipants || '-' }}</p>
+        <p><strong>Échéance:</strong> {{ task.dueDate | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Notes:</strong> {{ task.notes || '-' }}</p>
       </div>
 
-      <div class="task-actions">
-        <button (click)="toggle(task)">
+      <div class="card-actions">
+        <button class="btn toggle" (click)="toggle(task)">
           {{ task.completed ? 'Annuler' : 'Terminer' }}
         </button>
-        <button (click)="edit(task)">Modifier</button> <!-- Bouton Edit -->
-        <button (click)="delete(task)">Supprimer</button>
+        <button class="btn edit" (click)="editTask(task.id)">Modifier</button>
+        <button class="btn delete" (click)="delete(task)">Supprimer</button>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 
 <ng-template #noTasks>
-  <p>Aucune tâche pour le moment.</p>
+  <p class="no-tasks">Aucun événement pour le moment.</p>
 </ng-template>

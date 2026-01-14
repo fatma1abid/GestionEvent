@@ -1,32 +1,37 @@
 <div class="auth-page">
   <div class="auth-container">
 
-    <!-- Formulaire de connexion si pas connecté -->
+    <!-- PAS CONNECTÉ -->
     <div *ngIf="!isLogged()" class="login-card">
       <div class="login-header">
-        <h2>Connexion</h2>
-        <p>Entrez votre email pour accéder à votre compte</p>
+        <h2>{{ isSignup ? 'Créer un compte' : 'Connexion' }}</h2>
+        <p>{{ isSignup ? 'Remplissez vos informations pour créer un compte' : 'Entrez vos informations pour vous connecter' }}</p>
+      </div>
+
+      <div class="form-group" *ngIf="isSignup">
+        <input type="text" [(ngModel)]="firstName" placeholder="Prénom" />
+        <input type="text" [(ngModel)]="lastName" placeholder="Nom" />
+        <input type="text" [(ngModel)]="phone" placeholder="Numéro de téléphone" />
       </div>
 
       <div class="form-group">
-        <input
-          type="email"
-          [(ngModel)]="email"
-          placeholder="Email"
-          class="input-email"
-        />
-        <!-- Message d'erreur -->
-        <div class="error-message" *ngIf="emailError">
-          {{ emailError }}
-        </div>
+        <input type="email" [(ngModel)]="email" placeholder="Email" />
+        <input type="password" [(ngModel)]="password" placeholder="Mot de passe" />
+        <div class="error-message" *ngIf="emailError">{{ emailError }}</div>
       </div>
 
-      <button (click)="login()" class="btn-login">
-        Se connecter
+      <button (click)="isSignup ? signup() : login()" class="btn-login">
+        {{ isSignup ? 'Créer un compte' : 'Se connecter' }}
       </button>
+
+      <p class="switch-mode">
+        <a (click)="toggleMode()">
+          {{ isSignup ? 'Déjà un compte ? Se connecter' : 'Pas de compte ? Créer un compte' }}
+        </a>
+      </p>
     </div>
 
-    <!-- Si connecté -->
+    <!-- CONNECTÉ -->
     <div *ngIf="isLogged()" class="user-box">
       <p>Connecté en tant que : <strong>{{ getUserEmail() }}</strong></p>
       <button (click)="logout()" class="btn-logout">Se déconnecter</button>

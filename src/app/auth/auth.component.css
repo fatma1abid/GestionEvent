@@ -1,3 +1,4 @@
+/* Conteneur principal centré */
 .auth-page {
   display: flex;
   justify-content: center;
@@ -5,24 +6,29 @@
   min-height: 100vh;
   background-color: #f0f2f5;
   font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
+/* Conteneur du formulaire */
 .auth-container {
   width: 100%;
   max-width: 400px;
 }
 
+/* Carte de connexion / inscription */
 .login-card {
   background-color: #fff;
   border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 30px 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   text-align: center;
 }
 
+/* Header du formulaire */
 .login-header h2 {
   margin-bottom: 10px;
   color: #333;
+  font-size: 24px;
 }
 
 .login-header p {
@@ -31,18 +37,29 @@
   color: #666;
 }
 
+/* Formulaire et champs */
 .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* espacement entre les inputs */
   margin-bottom: 20px;
 }
 
-.input-email {
+.form-group input {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
+  transition: border 0.2s;
 }
 
+.form-group input:focus {
+  border-color: #04AA6D;
+  outline: none;
+}
+
+/* Bouton principal */
 .btn-login {
   width: 100%;
   padding: 12px;
@@ -52,21 +69,40 @@
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 .btn-login:hover {
   background-color: #039f5b;
+  transform: scale(1.02);
 }
 
+/* Lien pour switcher mode */
+.switch-mode {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.switch-mode a {
+  cursor: pointer;
+  color: #04AA6D;
+  text-decoration: underline;
+}
+
+.switch-mode a:hover {
+  color: #039f5b;
+}
+
+/* Boîte utilisateur connecté */
 .user-box {
   background-color: #fff;
   border-radius: 10px;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
+/* Bouton déconnexion */
 .btn-logout {
   margin-top: 15px;
   padding: 10px 20px;
@@ -75,14 +111,32 @@
   color: white;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-logout:hover {
   background-color: #c82333;
 }
 
+/* Message d'erreur */
 .error-message {
-  color: #dc3545; /* rouge */
-  font-size: 14px;
+  color: #dc3545;
+  font-size: 13px;
   margin-top: 5px;
+  text-align: left;
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 480px) {
+  .login-card, .user-box {
+    padding: 20px 15px;
+  }
+
+  .login-header h2 {
+    font-size: 20px;
+  }
+
+  .btn-login {
+    font-size: 14px;
+  }
 }
